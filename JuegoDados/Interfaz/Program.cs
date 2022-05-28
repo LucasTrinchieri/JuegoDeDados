@@ -14,7 +14,10 @@ namespace Interfaz
 
             Servicio.ServiceClient servicio = new Servicio.ServiceClient();
 
-            servicio.ObtenerNumeros(new Random());
+            while (!servicio.Jugar(new Random()).Termino)
+            {
+                
+            }
         }
     }
 }

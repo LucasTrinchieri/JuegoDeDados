@@ -18,12 +18,7 @@ public interface IService
 	CompositeType GetDataUsingDataContract(CompositeType composite);
 
 	[OperationContract]
-	string Jugar(List<int> lista);
-
-	[OperationContract]
-	List<int> ObtenerNumeros(Random rnd);
-
-	// TODO: agregue aquí sus operaciones de servicio
+	Respuesta Jugar(Random rnd);
 }
 
 // Utilice un contrato de datos, como se ilustra en el ejemplo siguiente, para agregar tipos compuestos a las operaciones de servicio.

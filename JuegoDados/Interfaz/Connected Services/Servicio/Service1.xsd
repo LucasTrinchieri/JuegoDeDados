@@ -7,4 +7,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CompositeType" nillable="true" type="tns:CompositeType" />
+  <xs:complexType name="Respuesta">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DadosRestantes" type="xs:int" />
+      <xs:element minOccurs="0" name="Puntos" type="xs:int" />
+      <xs:element minOccurs="0" name="Termino" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Respuesta" nillable="true" type="tns:Respuesta" />
 </xs:schema>

@@ -74,6 +74,83 @@ namespace Interfaz.Servicio {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Respuesta", Namespace="http://schemas.datacontract.org/2004/07/")]
+    [System.SerializableAttribute()]
+    public partial class Respuesta : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DadosRestantesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PuntosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool TerminoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DadosRestantes {
+            get {
+                return this.DadosRestantesField;
+            }
+            set {
+                if ((this.DadosRestantesField.Equals(value) != true)) {
+                    this.DadosRestantesField = value;
+                    this.RaisePropertyChanged("DadosRestantes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Puntos {
+            get {
+                return this.PuntosField;
+            }
+            set {
+                if ((this.PuntosField.Equals(value) != true)) {
+                    this.PuntosField = value;
+                    this.RaisePropertyChanged("Puntos");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Termino {
+            get {
+                return this.TerminoField;
+            }
+            set {
+                if ((this.TerminoField.Equals(value) != true)) {
+                    this.TerminoField = value;
+                    this.RaisePropertyChanged("Termino");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Servicio.IService")]
     public interface IService {
@@ -91,16 +168,10 @@ namespace Interfaz.Servicio {
         System.Threading.Tasks.Task<Interfaz.Servicio.CompositeType> GetDataUsingDataContractAsync(Interfaz.Servicio.CompositeType composite);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Jugar", ReplyAction="http://tempuri.org/IService/JugarResponse")]
-        string Jugar(int[] lista);
+        Interfaz.Servicio.Respuesta Jugar(System.Random rnd);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Jugar", ReplyAction="http://tempuri.org/IService/JugarResponse")]
-        System.Threading.Tasks.Task<string> JugarAsync(int[] lista);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ObtenerNumeros", ReplyAction="http://tempuri.org/IService/ObtenerNumerosResponse")]
-        int[] ObtenerNumeros(System.Random rnd);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ObtenerNumeros", ReplyAction="http://tempuri.org/IService/ObtenerNumerosResponse")]
-        System.Threading.Tasks.Task<int[]> ObtenerNumerosAsync(System.Random rnd);
+        System.Threading.Tasks.Task<Interfaz.Servicio.Respuesta> JugarAsync(System.Random rnd);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -146,20 +217,12 @@ namespace Interfaz.Servicio {
             return base.Channel.GetDataUsingDataContractAsync(composite);
         }
         
-        public string Jugar(int[] lista) {
-            return base.Channel.Jugar(lista);
+        public Interfaz.Servicio.Respuesta Jugar(System.Random rnd) {
+            return base.Channel.Jugar(rnd);
         }
         
-        public System.Threading.Tasks.Task<string> JugarAsync(int[] lista) {
-            return base.Channel.JugarAsync(lista);
-        }
-        
-        public int[] ObtenerNumeros(System.Random rnd) {
-            return base.Channel.ObtenerNumeros(rnd);
-        }
-        
-        public System.Threading.Tasks.Task<int[]> ObtenerNumerosAsync(System.Random rnd) {
-            return base.Channel.ObtenerNumerosAsync(rnd);
+        public System.Threading.Tasks.Task<Interfaz.Servicio.Respuesta> JugarAsync(System.Random rnd) {
+            return base.Channel.JugarAsync(rnd);
         }
     }
 }

@@ -58,6 +58,9 @@
     <None Include="Connected Services\Servicio\Interfaz.Servicio.CompositeType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\Servicio\Interfaz.Servicio.Respuesta.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\Servicio\Service.wsdl" />
     <None Include="Connected Services\Servicio\Service.xsd">
       <SubType>Designer</SubType>

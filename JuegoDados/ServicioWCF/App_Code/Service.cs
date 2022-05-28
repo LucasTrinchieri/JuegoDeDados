@@ -26,47 +26,120 @@ public class Service : IService
 		}
 		return composite;
 	}
-	Juego juego = new Juego();
-	public string Jugar(List<int> lista)
+
+	const int dados = 5;
+
+	public EventHandler<Eventos> juegoTerminado;
+
+	public Respuesta Jugar(Random rnd)
     {
-		return "";
+		int[] numeros = ObtenerNumeros(rnd);
+
+        if (numeros.Distinct().Count() == dados)
+        {
+            if (!numeros.Contains(1) && numeros.Contains(6))
+            {
+				Juego.Instancia.SumarPuntos(20); //escalera
+				return new Respuesta(Juego.Instancia.ObtenerPuntos(), 0, false);
+
+				//MostrarEvento(0, false);
+			}
+			else
+            {
+				Juego.Instancia.SumarPuntos(-20); //papa
+				return new Respuesta(Juego.Instancia.ObtenerPuntos(), 0, true);
+
+				//MostrarEvento(0, true);
+			}
+		}
+        else
+        {
+			Juego.Instancia.SumarPuntos(numeros.ValidarRepetidos().Suma); //repetidos
+
+			int res = 5 - numeros.ValidarRepetidos().CantRepetidos;
+
+			return new Respuesta(Juego.Instancia.ObtenerPuntos(), res, res == 1);
+
+			//MostrarEvento(res, res == 1);
+        }
     }
 
-	public List<int> ObtenerNumeros(Random rnd)
+	void MostrarEvento(int dados, bool termino)
     {
-		//return juego.ObtenerNumeros(rnd);
-    }
-}
-
-public class Juego
-{
-    public int Puntos { get; set; }
-    public int[] Numeros{ get; set; }
-
-	public void SumarPuntos()
-    {
-
+		this.juegoTerminado(this, new Eventos()
+        {
+			Puntos = Juego.Instancia.ObtenerPuntos(),
+			DadosRestantes = dados,
+			Terminado = termino
+        });
     }
 
-	public  int[] ObtenerNumeros(Random rnd)
-	{
-		int dados = 5;
-
-		int[] numeros = ObtenerArray(rnd, dados);
-
-		Numeros = numeros;
-
-		return numeros;
-	}
-	int[] ObtenerArray(Random rnd, int dados)
-	{
+	int[] ObtenerNumeros(Random rnd)
+    {
 		int[] numeros = new int[6];
 
-		for (int i = 0; i < dados; i++)
+		for (int i = 0; i < numeros.Length; i++)
 		{
 			numeros[i] = rnd.Next(1, 7);
 		}
 
+		Juego.Instancia.AgregarNumeros(numeros);
+
 		return numeros;
+	}
+}
+
+public sealed class Juego
+{
+	private static Juego instancia = null;
+	private Juego() { }
+	public static Juego Instancia
+    {
+        get
+        {
+            if (instancia == null)
+            {
+				instancia = new Juego();
+			}
+
+			return instancia;
+        }
+    }
+
+    static int Puntos { get; set; }
+    static List<int> Numeros{ get; set; }
+
+	public void SumarPuntos(int puntos)
+    {
+		Puntos += puntos;
+    }
+
+	public void AgregarNumeros(int[] numeros)
+    {
+		Numeros = numeros.ToList();
+    }
+
+	public int ObtenerPuntos()
+    {
+		return Puntos;
+    }
+}
+
+public class Respuesta
+{
+    public int Puntos { get; set; }
+    public bool Termino { get; set; }
+    public int DadosRestantes { get; set; }
+
+	public Respuesta()
+	{
+
+	}
+
+	public Respuesta(int puntos, int restantes, bool termino)
+	{
+		Puntos = puntos;
+		DadosRestantes = restantes;
+		Termino = termino;
 	}
 }

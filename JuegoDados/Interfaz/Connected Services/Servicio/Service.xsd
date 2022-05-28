@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:51225/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/" />
-  <xs:import schemaLocation="http://localhost:51225/Service.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:import schemaLocation="http://localhost:51225/Service.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System" />
+  <xs:import schemaLocation="http://localhost:51225/Service.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
   <xs:element name="GetData">
     <xs:complexType>
       <xs:sequence>
@@ -34,28 +33,14 @@
   <xs:element name="Jugar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="lista" nillable="true" type="q3:ArrayOfint" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="rnd" nillable="true" type="q3:Random" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="JugarResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="JugarResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ObtenerNumeros">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="rnd" nillable="true" type="q4:Random" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ObtenerNumerosResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ObtenerNumerosResult" nillable="true" type="q5:ArrayOfint" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="JugarResult" nillable="true" type="q4:Respuesta" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

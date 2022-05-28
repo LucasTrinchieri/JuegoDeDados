@@ -5,8 +5,8 @@
       <xsd:import schemaLocation="http://localhost:51225/Service.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:51225/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:51225/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/" />
-      <xsd:import schemaLocation="http://localhost:51225/Service.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-      <xsd:import schemaLocation="http://localhost:51225/Service.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://localhost:51225/Service.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://localhost:51225/Service.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IService_GetData_InputMessage">
@@ -27,12 +27,6 @@
   <wsdl:message name="IService_Jugar_OutputMessage">
     <wsdl:part name="parameters" element="tns:JugarResponse" />
   </wsdl:message>
-  <wsdl:message name="IService_ObtenerNumeros_InputMessage">
-    <wsdl:part name="parameters" element="tns:ObtenerNumeros" />
-  </wsdl:message>
-  <wsdl:message name="IService_ObtenerNumeros_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ObtenerNumerosResponse" />
-  </wsdl:message>
   <wsdl:portType name="IService">
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/GetData" message="tns:IService_GetData_InputMessage" />
@@ -45,10 +39,6 @@
     <wsdl:operation name="Jugar">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/Jugar" message="tns:IService_Jugar_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/JugarResponse" message="tns:IService_Jugar_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ObtenerNumeros">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService/ObtenerNumeros" message="tns:IService_ObtenerNumeros_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService/ObtenerNumerosResponse" message="tns:IService_ObtenerNumeros_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
@@ -73,15 +63,6 @@
     </wsdl:operation>
     <wsdl:operation name="Jugar">
       <soap:operation soapAction="http://tempuri.org/IService/Jugar" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ObtenerNumeros">
-      <soap:operation soapAction="http://tempuri.org/IService/ObtenerNumeros" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
