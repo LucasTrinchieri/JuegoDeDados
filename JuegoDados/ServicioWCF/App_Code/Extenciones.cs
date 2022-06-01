@@ -17,9 +17,16 @@ public static class Extenciones
         {
             if (array[i] == array[i + 1])
             {
-                suma += cant == 0 ? array[i] + array[i + 1] : array[i + i];
-
-                cant ++;
+                if (cant == 0)
+                {
+                    suma += array[i] + array[i + 1];
+                    cant += 2;
+                }
+                else
+                {
+                    suma += array[i + 1];
+                    cant++;
+                }
             }
         }
 

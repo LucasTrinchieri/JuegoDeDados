@@ -87,6 +87,9 @@ namespace Interfaz.Servicio {
         private int DadosRestantesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int[] NumerosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int PuntosField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -111,6 +114,19 @@ namespace Interfaz.Servicio {
                 if ((this.DadosRestantesField.Equals(value) != true)) {
                     this.DadosRestantesField = value;
                     this.RaisePropertyChanged("DadosRestantes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int[] Numeros {
+            get {
+                return this.NumerosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NumerosField, value) != true)) {
+                    this.NumerosField = value;
+                    this.RaisePropertyChanged("Numeros");
                 }
             }
         }

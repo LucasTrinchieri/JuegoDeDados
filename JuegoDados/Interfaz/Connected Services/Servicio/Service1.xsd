@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:51225/Service.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:complexType name="CompositeType">
     <xs:sequence>
       <xs:element minOccurs="0" name="BoolValue" type="xs:boolean" />
@@ -10,6 +11,7 @@
   <xs:complexType name="Respuesta">
     <xs:sequence>
       <xs:element minOccurs="0" name="DadosRestantes" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Numeros" nillable="true" type="q1:ArrayOfint" />
       <xs:element minOccurs="0" name="Puntos" type="xs:int" />
       <xs:element minOccurs="0" name="Termino" type="xs:boolean" />
     </xs:sequence>

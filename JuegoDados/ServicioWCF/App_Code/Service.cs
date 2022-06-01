@@ -40,25 +40,27 @@ public class Service : IService
             if (!numeros.Contains(1) && numeros.Contains(6))
             {
 				Juego.Instancia.SumarPuntos(20); //escalera
-				return new Respuesta(Juego.Instancia.ObtenerPuntos(), 0, false);
+				return new Respuesta(Juego.Instancia.ObtenerPuntos(), 0, false, numeros);
 
 				//MostrarEvento(0, false);
 			}
 			else
             {
 				Juego.Instancia.SumarPuntos(-20); //papa
-				return new Respuesta(Juego.Instancia.ObtenerPuntos(), 0, true);
+				return new Respuesta(Juego.Instancia.ObtenerPuntos(), 0, true, numeros);
 
 				//MostrarEvento(0, true);
 			}
 		}
         else
         {
-			Juego.Instancia.SumarPuntos(numeros.ValidarRepetidos().Suma); //repetidos
+			Resultado resultado = numeros.ValidarRepetidos();
 
-			int res = 5 - numeros.ValidarRepetidos().CantRepetidos;
+			Juego.Instancia.SumarPuntos(resultado.Suma); //repetidos
 
-			return new Respuesta(Juego.Instancia.ObtenerPuntos(), res, res == 1);
+			int res = 5 - resultado.CantRepetidos;
+
+			return new Respuesta(Juego.Instancia.ObtenerPuntos(), res, res == 1, numeros);
 
 			//MostrarEvento(res, res == 1);
         }
@@ -106,8 +108,8 @@ public sealed class Juego
         }
     }
 
-    static int Puntos { get; set; }
-    static List<int> Numeros{ get; set; }
+    private int Puntos { get; set; }
+    private List<int> Numeros{ get; set; }
 
 	public void SumarPuntos(int puntos)
     {
@@ -127,19 +129,21 @@ public sealed class Juego
 
 public class Respuesta
 {
-    public int Puntos { get; set; }
-    public bool Termino { get; set; }
-    public int DadosRestantes { get; set; }
+	public int Puntos { get; set; }
+	public bool Termino { get; set; }
+	public int DadosRestantes { get; set; }
+	public int[] Numeros { get; set; }
 
 	public Respuesta()
 	{
 
 	}
 
-	public Respuesta(int puntos, int restantes, bool termino)
+	public Respuesta(int puntos, int restantes, bool termino, int[] numeros)
 	{
 		Puntos = puntos;
 		DadosRestantes = restantes;
 		Termino = termino;
+		Numeros = numeros;
 	}
 }
